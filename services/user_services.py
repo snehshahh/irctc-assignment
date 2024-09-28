@@ -32,7 +32,7 @@ class AuthService:
                 """, (admin_key, new_user_id))
 
             conn.commit()
-            return {'message': 'User registered successfully'}
+            return {'message': 'User registered successfully.Please Login To Continue'}
 
         except psycopg2.errors.UniqueViolation:
             conn.rollback()

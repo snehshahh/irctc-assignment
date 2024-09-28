@@ -17,7 +17,7 @@ def require_admin_key(f):
         #api_key = request.headers.get('X-API-Key')
 
         if api_key != Config.ADMIN_API_KEY:
-            return jsonify({'error': 'Unauthorized: Invalid API key'}), 403
+            return jsonify({'error': 'Unauthorized: Invalid Admin API key'}), 403
         
         return f(*args, **kwargs)
     
