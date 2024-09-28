@@ -31,7 +31,56 @@ Make sure you have the following installed:
    ```bash
    python app.py
 
-### Sample Paramaeters for Testing In Postman
+### Database Setup
+
+    To set up the PostgreSQL database for this project, use the following `CREATE TABLE` queries to create the necessary tables:
+    
+    ## Users Table
+    ```sql
+    CREATE TABLE users (
+        user_id SERIAL PRIMARY KEY,
+        username VARCHAR(50) NOT NULL UNIQUE,
+        password VARCHAR(200) NOT NULL,
+        email VARCHAR(100) UNIQUE,
+        role VARCHAR(10) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+    
+    ## Admin Table
+    ```sql
+    CREATE TABLE admin_keys (
+        admin_key_id SERIAL PRIMARY KEY,
+        admin_key VARCHAR(255) NOT NULL,
+        user_id INTEGER,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        CONSTRAINT admin_keys_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(user_id)
+    );
+    
+    ## Trains Table
+    ```sql
+    CREATE TABLE trains (
+        train_id SERIAL PRIMARY KEY,
+        train_name VARCHAR(100) NOT NULL,
+        source_station VARCHAR(100) NOT NULL,
+        destination_station VARCHAR(100) NOT NULL,
+        total_seats INTEGER NOT NULL,
+        available_seats INTEGER NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+    ## Bookings Table
+    ```sql
+    CREATE TABLE bookings (
+        booking_id UUID NOT NULL,
+        user_id INTEGER NOT NULL,
+        train_id INTEGER NOT NULL,
+        seat_number INTEGER NOT NULL,
+        status VARCHAR(10) NOT NULL,
+        PRIMARY KEY (booking_id, seat_number),
+        FOREIGN KEY (user_id) REFERENCES users(user_id),
+        FOREIGN KEY (train_id) REFERENCES trains(train_id)
+    );
+
+## Sample Paramaeters for Testing In Postman
 1. **Users: Register**
    Description: Registration Of The User
     ```bash
@@ -109,5 +158,5 @@ The project follows a structured architecture with the following components:
   - **`booking_service.py`**: Handles the logic for booking tickets and checking seat availability.
 - **`app/database.py`**: Contains the logic for establishing a connection to the PostgreSQL database.
 - **`requirements.txt`**: Lists all the dependencies required for the project.
-- **`run.py`**: The entry point to run the Flask application.
+- **`app.py`**: The entry point to run the Flask application.
 
