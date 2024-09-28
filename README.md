@@ -18,17 +18,23 @@ Make sure you have the following installed:
    cd app
 
 2. **Make Virtual ENV file**
-   python -m venv venv
-source venv/bin/activate  # On Windows use: venv\Scripts\activate
+    ```bash
+    python -m venv venv
+    source venv/bin/activate 
+     # On Windows use:
+    venv\Scripts\activate
 
 3. **Install Dependencies**
-   pip install -r requirements.txt
+    ```bash
+    pip install -r requirements.txt
 
 4. **Run The App**
+   ```bash
    python app.py
 
 ### Sample Paramaeters for Testing In Postman
 1. **Users: Register**
+    ```bash
     URL:http://127.0.0.1:5000/user/register
     PROTOCOL:POST
     BODY:
