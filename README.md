@@ -34,56 +34,72 @@ Make sure you have the following installed:
 
 ### Sample Paramaeters for Testing In Postman
 1. **Users: Register**
+   URL: http://127.0.0.1:5000/user/register
+   PROTOCOL: POST
+   BODY:
     ```bash
-    URL:http://127.0.0.1:5000/user/register
-    PROTOCOL:POST
-    BODY:
-    {
-        "username":"Test",
-        "password":"Test7634@",
-        "email":"Test7634@gmail.com",
-        "role":"Admin"
-    }
+   curl -X POST http://127.0.0.1:5000/user/register \
+   -H "Content-Type: application/json" \
+   -d '{
+       "username": "Test",
+       "password": "Test7634@",
+       "email": "Test7634@gmail.com",
+       "role": "Admin"
+   }'
 
 2. **Users: Login**
-    URL:http://127.0.0.1:5000/user/login
-    PROTOCOL:POST
-    BODY:
-    {
-        "username":"Test",
-        "password":"Test7634@",
-        "email":"Test7634@gmail.com",
-        "role":"Admin"
-    }
+   URL: http://127.0.0.1:5000/user/login
+   PROTOCOL: POST
+   BODY:
+    ```bash
+   curl -X POST http://127.0.0.1:5000/user/login \
+   -H "Content-Type: application/json" \
+   -d '{
+       "username": "Test",
+       "password": "Test7634@",
+       "email": "Test7634@gmail.com",
+       "role": "Admin"
+   }'
 
 3. **Train: Add Trains**
-    URL:http://127.0.0.1:5000/trains/add_train
-    PROTOCOL:POST
-    BODY:
-    {
-        "train_name": "Medium Train",
-        "source_station": "Station E",
-        "destination_station": "Staion F",
-        "total_seats": 100,
-        "api_key":"c1af7e8a0fc82c0d487ef1a08443eb8762e92f5a22c9662403d788b6ab490cbf"
-    }
+   URL: http://127.0.0.1:5000/trains/add_train
+   PROTOCOL: POST
+   BODY:
+    ```bash
+   curl -X POST http://127.0.0.1:5000/trains/add_train \
+   -H "Content-Type: application/json" \
+   -d '{
+       "train_name": "Medium Train",
+       "source_station": "Station E",
+       "destination_station": "Station F",
+       "total_seats": 100,
+       "api_key": "c1af7e8a0fc82c0d487ef1a08443eb8762e92f5a22c9662403d788b6ab490cbf"
+   }'
 
 4. **Train: Get Available Trains**
-    URL:http://127.0.0.1:5000/trains/get_available_trains?FromStation=Station A&ToStation=Station B
-    PROTOCOL:GET
+   URL: http://127.0.0.1:5000/trains/get_available_trains?FromStation=Station A&ToStation=Station B
+   PROTOCOL: GET
+    ```bash
+   curl -X GET "http://127.0.0.1:5000/trains/get_available_trains?FromStation=Station A&ToStation=Station B"
 
 5. **Train: Book Ticket**
-    URL:http://127.0.0.1:5000/bookings/book_ticket
-    PROTOCOL:POST
-    BODY:
-    {
-        "train_id": 1,
-        "no_of_seats_required": 2
-    }
+   URL: http://127.0.0.1:5000/bookings/book_ticket
+   PROTOCOL: POST
+   BODY:
+       ```bash
 
-4. **Train: Get Booking Details**
-    URL:http://127.0.0.1:5000/bookings/booking_details?BookingId=35a917d0-528f-4dd7-bf26-942c18d15c03
-    PROTOCOL:GET
+   curl -X POST http://127.0.0.1:5000/bookings/book_ticket \
+   -H "Content-Type: application/json" \
+   -d '{
+       "train_id": 1,
+       "no_of_seats_required": 2
+   }'
+
+6. **Train: Get Booking Details**
+   URL: http://127.0.0.1:5000/bookings/booking_details?BookingId=35a917d0-528f-4dd7-bf26-942c18d15c03
+   PROTOCOL: GET
+       ```bash
+   curl -X GET "http://127.0.0.1:5000/bookings/booking_details?BookingId=35a917d0-528f-4dd7-bf26-942c18d15c03"
 
 
 ## Architecture
