@@ -122,11 +122,11 @@ To set up the PostgreSQL database for this project, use the following `CREATE TA
    curl -X POST http://127.0.0.1:5000/trains/add_train \
    -H "Content-Type: application/json" \
    -d '{
-       "train_name": "Medium Train",
+       "train_name": "Express Train",
        "source_station": "Station E",
        "destination_station": "Station F",
        "total_seats": 100,
-       "api_key": "c1af7e8a0fc82c0d487ef1a08443eb8762e92f5a22c9662403d788b6ab490cbf"
+       "api_key": "08ad77dd3c6c0d36613a0be3e896a7166305c49a1ca6c4f0ce965ee2b8bec8f7"
    }'
 
 4. **Train: Get Available Trains**
