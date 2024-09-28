@@ -31,22 +31,22 @@ Make sure you have the following installed:
    ```bash
    python app.py
 
-## Environment Variables Setup
+### Environment Variables Setup
 
-To ensure the security of the database and API keys, you need to set up environment variables. Follow these steps:
+    To ensure the security of the database and API keys, you need to set up environment variables. Follow these steps:
 
-1. **Create a new file** named `.env` in the root folder(same folder where the app.py is there) of the project.
-2. **Add the following environment variables** to the `.env` file:
+    1. **Create a new file** named `.env` in the root folder(same folder where the app.py is there) of the project.
+    2. **Add the following environment variables** to the `.env` file:
 
-FOR EG:
-```plaintext
-JWT_SECRET_KEY=c1af7e8a0fc82c0d487ef1a08443eb8762e92f5a22c9662403d788b6ab490cbf
-ADMIN_API_KEY=08ad77dd3c6c0d36613a0be3e896a7166305c49a1ca6c4f0ce965ee2b8bec8f7
-HOST=localhost
-DATABASE=IRCTC
-USER=postgres
-PASSWORD=admin
-
+    FOR EG:
+    
+    ```plaintext
+    JWT_SECRET_KEY=c1af7e8a0fc82c0d487ef1a08443eb8762e92f5a22c9662403d788b6ab490cbf
+    ADMIN_API_KEY=08ad77dd3c6c0d36613a0be3e896a7166305c49a1ca6c4f0ce965ee2b8bec8f7
+    HOST=localhost
+    DATABASE=IRCTC
+    USER=postgres
+    PASSWORD=admin
 
 ### Database Setup
     To set up the PostgreSQL database for this project, use the following `CREATE TABLE` queries to create the necessary tables:
