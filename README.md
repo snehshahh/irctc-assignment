@@ -31,12 +31,28 @@ Make sure you have the following installed:
    ```bash
    python app.py
 
-### Database Setup
+## Environment Variables Setup
 
+To ensure the security of the database and API keys, you need to set up environment variables. Follow these steps:
+
+1. **Create a new file** named `.env` in the root folder(same folder where the app.py is there) of the project.
+2. **Add the following environment variables** to the `.env` file:
+
+FOR EG:
+```plaintext
+JWT_SECRET_KEY=c1af7e8a0fc82c0d487ef1a08443eb8762e92f5a22c9662403d788b6ab490cbf
+ADMIN_API_KEY=08ad77dd3c6c0d36613a0be3e896a7166305c49a1ca6c4f0ce965ee2b8bec8f7
+HOST=localhost
+DATABASE=IRCTC
+USER=postgres
+PASSWORD=admin
+
+
+### Database Setup
     To set up the PostgreSQL database for this project, use the following `CREATE TABLE` queries to create the necessary tables:
-    
-    ## Users Table
-    ```sql
+
+    ```bash
+    -- Users Table
     CREATE TABLE users (
         user_id SERIAL PRIMARY KEY,
         username VARCHAR(50) NOT NULL UNIQUE,
@@ -46,8 +62,7 @@ Make sure you have the following installed:
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
     
-    ## Admin Table
-    ```sql
+    -- Admin Table
     CREATE TABLE admin_keys (
         admin_key_id SERIAL PRIMARY KEY,
         admin_key VARCHAR(255) NOT NULL,
@@ -56,8 +71,7 @@ Make sure you have the following installed:
         CONSTRAINT admin_keys_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(user_id)
     );
     
-    ## Trains Table
-    ```sql
+    --Trains Table
     CREATE TABLE trains (
         train_id SERIAL PRIMARY KEY,
         train_name VARCHAR(100) NOT NULL,
@@ -67,8 +81,7 @@ Make sure you have the following installed:
         available_seats INTEGER NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
-    ## Bookings Table
-    ```sql
+    -- Bookings Table
     CREATE TABLE bookings (
         booking_id UUID NOT NULL,
         user_id INTEGER NOT NULL,
@@ -146,7 +159,6 @@ The project follows a structured architecture with the following components:
 
 ### Project Components
 
-- **`app/__init__.py`**: Initializes the Flask application, loads configurations, and registers blueprints.
 - **`app/config.py`**: Contains configuration settings, including database URLs and secret keys for JWT.
 - **`app/models.py`**: Defines data models, including the structure for users, trains, and bookings.
 - **`app/api/`**: Contains all API-related files:
@@ -154,7 +166,8 @@ The project follows a structured architecture with the following components:
   - **`bookings.py`**: Handles booking-related endpoints for seat reservations.
   - **`trains.py`**: Manages train-related endpoints for adding and viewing trains.
 - **`app/services/`**: Contains business logic services:
-  - **`auth_service.py`**: Contains logic for user registration and login.
+  - **`user_service.py`**: Contains logic for user registration and login.
+  - **`train_service.py`**: Contains logic for adding train,Getting Available Tickets etc.
   - **`booking_service.py`**: Handles the logic for booking tickets and checking seat availability.
 - **`app/database.py`**: Contains the logic for establishing a connection to the PostgreSQL database.
 - **`requirements.txt`**: Lists all the dependencies required for the project.
