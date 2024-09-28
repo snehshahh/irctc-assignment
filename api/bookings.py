@@ -19,7 +19,6 @@ def book_ticket_endpoint():
     result = BookingService.book_ticket(user_info, train_id, no_of_seats)
 
     if isinstance(result, dict):
-        # Handle the response from BookingService
         return jsonify(result), result.get('status_code', 500)
 
     return jsonify({
@@ -39,8 +38,7 @@ def booking_details():
     try:
         booking_details = BookingService.get_booking_details(booking_id)
         
-        # Ensure that trains_available is a list of dictionaries
-        return jsonify([detail.to_dict() for detail in booking_details]), 200  # Convert each object to a dict
+        return jsonify([detail.to_dict() for detail in booking_details]), 200  
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 

@@ -24,7 +24,7 @@ def require_admin_key(f):
     return decorated_function
 
 @trains_bp.route('/trains/add_train', methods=['POST'])
-@require_admin_key  # Custom decorator to check for API key
+@require_admin_key  
 @jwt_required()
 def add_new_train():
     current_user = get_jwt_identity()
@@ -66,8 +66,7 @@ def get_available_trains():
     try:
         trains_available = TrainService.get_avaliable_trains(from_station, to_station)
         
-        # Ensure that trains_available is a list of dictionaries
-        return jsonify([train.to_dict() for train in trains_available]), 200  # Convert each object to a dict
+        return jsonify([train.to_dict() for train in trains_available]), 200 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 

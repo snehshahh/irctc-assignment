@@ -9,7 +9,6 @@ def create_app():
     app.config.from_object('config.Config')
     jwt = JWTManager(app)
 
-    # Register the authentication blueprint
     app.register_blueprint(auth_bp)
     app.register_blueprint(trains_bp)
     app.register_blueprint(bookings_bp)

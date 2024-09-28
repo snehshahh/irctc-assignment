@@ -14,7 +14,6 @@ class BookingService:
             cur = conn.cursor()
 
             try:
-                # Check available seats
                 cur.execute("SELECT available_seats FROM trains WHERE train_id = %s FOR UPDATE", (train_id,))
                 train = cur.fetchone()
 
@@ -29,10 +28,9 @@ class BookingService:
                 if available_seats < no_of_seats_required:
                     return {'message': 'Required number of seats not available. Try a lesser number of seats.'}, 400
 
-                # Generate a unique booking ID for this booking
+          
                 booking_id = str(uuid.uuid4())
 
-                # Book the required number of seats
                 seat_numbers = []
                 for _ in range(no_of_seats_required):
                     seat_number = BookingService.get_next_available_seat(train_id, cur)
@@ -40,23 +38,21 @@ class BookingService:
                         return {'message': 'No available seats'}, 400
                     seat_numbers.append(seat_number)
 
-                    # Book each seat with the same booking ID
+       
                     cur.execute("""
                         INSERT INTO bookings (booking_id, user_id, train_id, seat_number, status) 
                         VALUES (%s, %s, %s, %s, 'booked')
                     """, (booking_id, user_info['user_id'], train_id, seat_number))
 
-                # Update available seats after booking
                 new_available_seats = available_seats - no_of_seats_required
                 cur.execute("UPDATE trains SET available_seats = %s WHERE train_id = %s", (new_available_seats, train_id))
 
                 conn.commit()
 
-                # Return the booking response with the booked seat numbers
                 return BookingResponse(
                     message='Seats booked successfully',
                     booking_id=booking_id,
-                    seat_numbers=seat_numbers  # Return the list of booked seat numbers
+                    seat_numbers=seat_numbers 
                 )
 
             except Exception as e:
@@ -72,12 +68,12 @@ class BookingService:
         cursor.execute("SELECT seat_number FROM bookings WHERE train_id = %s", (train_id,))
         booked_seats = {row[0] for row in cursor.fetchall()}
 
-        total_seats = 100  # Assuming a total of 100 seats
+        total_seats = 100
         for seat_number in range(1, total_seats + 1):
             if seat_number not in booked_seats:
-                return seat_number  # Return the first available seat number
+                return seat_number  
 
-        return None  # No available seats
+        return None
 
     @staticmethod
     def get_booking_details(booking_id):
