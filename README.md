@@ -1,4 +1,4 @@
-# Train Ticket Booking System
+# IRCTC Assignment
 
 ## Overview
 This project is a Train Ticket Booking System built with Flask, PostgreSQL, and JWT for authentication. It allows users to book seats on trains while ensuring that concurrent bookings are handled correctly. The application follows a modular architecture, separating concerns for better maintainability and scalability.
@@ -27,9 +27,8 @@ Make sure you have the following installed:
     ```bash
     pip install -r requirements.txt
 
-4. **Run The App**
-   ```bash
-   python app.py
+
+
 
 ### Environment Variables Setup
 
@@ -91,7 +90,10 @@ To set up the PostgreSQL database for this project, use the following `CREATE TA
         FOREIGN KEY (train_id) REFERENCES trains(train_id)
     );
 
-## Sample Paramaeters for Testing In Postman
+### Run The App
+    python app.py
+
+### Sample Paramaeters for Testing In Postman
 1. **Users: Register**
    Description: Registration Of The User
     ```bash
@@ -150,7 +152,7 @@ To set up the PostgreSQL database for this project, use the following `CREATE TA
    curl -X GET "http://127.0.0.1:5000/bookings/booking_details?BookingId=35a917d0-528f-4dd7-bf26-942c18d15c03"
 
 
-## Architecture
+### Architecture
 
 The project follows a structured architecture with the following components:
 
