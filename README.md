@@ -33,14 +33,13 @@ Make sure you have the following installed:
 
 ### Environment Variables Setup
 
-    To ensure the security of the database and API keys, you need to set up environment variables. Follow these steps:
+To ensure the security of the database and API keys, you need to set up environment variables. Follow these steps:
 
-    1. **Create a new file** named `.env` in the root folder(same folder where the app.py is there) of the project.
-    2. **Add the following environment variables** to the `.env` file:
+1. **Create a new file** named `.env` in the root folder(same folder where the app.py is there) of the project.
+2. **Add the following environment variables** to the `.env` file:
 
-    FOR EG:
-    
-    ```plaintext
+FOR EG:
+
     JWT_SECRET_KEY=c1af7e8a0fc82c0d487ef1a08443eb8762e92f5a22c9662403d788b6ab490cbf
     ADMIN_API_KEY=08ad77dd3c6c0d36613a0be3e896a7166305c49a1ca6c4f0ce965ee2b8bec8f7
     HOST=localhost
@@ -49,9 +48,8 @@ Make sure you have the following installed:
     PASSWORD=admin
 
 ### Database Setup
-    To set up the PostgreSQL database for this project, use the following `CREATE TABLE` queries to create the necessary tables:
+To set up the PostgreSQL database for this project, use the following `CREATE TABLE` queries to create the necessary tables:
 
-    ```bash
     -- Users Table
     CREATE TABLE users (
         user_id SERIAL PRIMARY KEY,
@@ -134,7 +132,7 @@ Make sure you have the following installed:
 4. **Train: Get Available Trains**
    Description: Get Available Trains From One Point To Another
    ```bash
-   curl -X GET "http://127.0.0.1:5000/trains/get_available_trains?FromStation=Station A&ToStation=Station B"
+   curl -X GET "http://127.0.0.1:5000/trains/get_available_trains?FromStation=Station E&ToStation=Station F"
 
 5. **Train: Book Ticket**
    Description: Booking Tickets, Assuming there the user to book multiple tickets.
